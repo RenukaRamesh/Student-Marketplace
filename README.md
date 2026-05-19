@@ -139,7 +139,7 @@ Password:Free@123
 ## 📹 Video Call Features
 <img width="900" height="700" alt="image" src="https://github.com/user-attachments/assets/2e5a8eba-bfcc-4813-b019-f61a7e3ddb3c" />
 
-<img width="900" height="7000" alt="image" src="https://github.com/user-attachments/assets/7f90527c-9c4e-4454-967e-02b0b75f1e61" />
+<img width="900" height="700" alt="image" src="https://github.com/user-attachments/assets/7f90527c-9c4e-4454-967e-02b0b75f1e61" />
 
 **Powered by **Jitsi Meet****
 ---
