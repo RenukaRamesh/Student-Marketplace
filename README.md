@@ -173,5 +173,5 @@ Password:Free@123
 ### Saveetha Engineering College
 ---
 
-## 📄 License
-This project is for educational purposes.
+# 📄 License
+## This project is for educational purposes.
