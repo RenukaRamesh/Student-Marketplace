@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Client Dashboard — FreelanceHub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/darkmode.css"/>
+    <link rel="manifest" href="/manifest.json"/>
+    <script src="/darkmode.js"></script>
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        body { background: #F0F4F8; }
+        .pro-nav { background: #0F172A; padding: 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 16px rgba(0,0,0,0.2); }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+        .nav-brand { color: white; font-weight: 800; font-size: 18px; text-decoration: none; }
+        .nav-links { display: flex; align-items: center; gap: 4px; }
+        .nav-lnk { color: #94A3B8; text-decoration: none; padding: 6px 12px; border-radius: 8px; font-size: 13px; font-weight: 500; transition: all 0.2s; }
+        .nav-lnk:hover, .nav-lnk.active { color: white; background: rgba(255,255,255,0.1); }
+        .nav-out { color: #F87171; text-decoration: none; padding: 6px 12px; border-radius: 8px; font-size: 13px; font-weight: 500; }
+        .nav-out:hover { background: rgba(248,113,113,0.1); }
+        .hero { background: linear-gradient(135deg,#1B6CA8,#0F4C75); border-radius: 20px; padding: 36px 40px; color: white; margin-bottom: 28px; position: relative; overflow: hidden; }
+        .hero::after { content: '💼'; position: absolute; right: 40px; top: 50%; transform: translateY(-50%); font-size: 80px; opacity: 0.12; }
+        .hero-title { font-size: 26px; font-weight: 800; margin-bottom: 6px; }
+        .hero-sub { font-size: 15px; opacity: 0.8; }
+        .hero-btn { background: white; color: #1B6CA8; border: none; border-radius: 10px; padding: 10px 22px; font-weight: 700; font-size: 14px; text-decoration: none; display: inline-block; margin-top: 16px; }
+        .hero-btn:hover { opacity: 0.9; color: #0F4C75; }
+        .dash-card { background: white; border-radius: 16px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); transition: all 0.25s; border: 2px solid transparent; height: 100%; }
+        .dash-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,0.1); border-color: #E0EDFF; }
+        .card-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 14px; }
+        .card-title { font-size: 15px; font-weight: 700; color: #0F172A; margin-bottom: 4px; }
+        .card-desc { font-size: 13px; color: #64748B; margin-bottom: 16px; line-height: 1.5; }
+        .card-btn { display: block; text-align: center; background: #F0F4F8; color: #1B6CA8; border-radius: 8px; padding: 9px; font-size: 13px; font-weight: 600; text-decoration: none; transition: all 0.2s; }
+        .card-btn:hover { background: #1B6CA8; color: white; }
+        .section-title { font-size: 16px; font-weight: 700; color: #0F172A; margin-bottom: 16px; }
+    </style>
+</head>
+<body>
+<nav class="pro-nav">
+    <div class="container">
+        <div class="nav-inner">
+            <a href="/client/dashboard" class="nav-brand">🎓 FreelanceHub</a>
+            <div class="nav-links">
+                <a href="/client/dashboard" class="nav-lnk active">🏠 Home</a>
+                <a href="/messages"         class="nav-lnk">💬 Messages</a>
+                <a href="/profile"          class="nav-lnk">👤 Profile</a>
+                <a href="/settings"         class="nav-lnk">⚙️ Settings</a>
+                <a href="/logout"           class="nav-out">🚪 Logout</a>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="container mt-4 mb-5">
+    <div class="hero">
+        <div class="hero-title">Welcome back, <span th:text="${user.name}"></span>! 👋</div>
+        <div class="hero-sub">Manage your projects and find the best student freelancers.</div>
+        <a href="/client/post-gig" class="hero-btn">+ Post a New Project</a>
+    </div>
+    <div class="section-title">What would you like to do?</div>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="dash-card">
+                <div class="card-icon" style="background:#EFF6FF;">📋</div>
+                <div class="card-title">My Projects</div>
+                <div class="card-desc">View, edit and manage all your posted projects and their bids.</div>
+                <a href="/client/my-gigs" class="card-btn">Open →</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="dash-card">
+                <div class="card-icon" style="background:#F0FDF4;">👥</div>
+                <div class="card-title">Find Freelancers</div>
+                <div class="card-desc">Browse talented student freelancers and view their profiles.</div>
+                <a href="/client/freelancers" class="card-btn">Open →</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="dash-card">
+                <div class="card-icon" style="background:#FFF7ED;">📅</div>
+                <div class="card-title">Deadline Calendar</div>
+                <div class="card-desc">Track all your project deadlines in a visual calendar view.</div>
+                <a href="/client/calendar" class="card-btn">Open →</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="dash-card">
+                <div class="card-icon" style="background:#FDF4FF;">🗓️</div>
+                <div class="card-title">Project Timeline</div>
+                <div class="card-desc">Visual timeline showing the progress of all your projects.</div>
+                <a href="/client/timeline" class="card-btn">Open →</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="dash-card">
+                <div class="card-icon" style="background:#FFF1F2;">🏆</div>
+                <div class="card-title">Leaderboard</div>
+                <div class="card-desc">See the top rated freelancers ranked by client reviews.</div>
+                <a href="/leaderboard" class="card-btn">Open →</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
+</script>
+</body>
+</html>

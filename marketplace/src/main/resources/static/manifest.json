@@ -1,0 +1,16 @@
+{
+  "name": "FreelanceHub",
+  "short_name": "FreelanceHub",
+  "description": "Student Freelance Marketplace",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#EEF2F7",
+  "theme_color": "#4A6F8A",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

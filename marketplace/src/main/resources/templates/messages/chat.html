@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Chat — FreelanceHub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/darkmode.css"/>
+    <script src="/darkmode.js"></script>
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        body { background: #F0F4F8; }
+        .pro-nav { background: #0F172A; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 16px rgba(0,0,0,0.2); }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+        .nav-brand { color: white; font-weight: 800; font-size: 18px; text-decoration: none; }
+        .nav-links { display: flex; align-items: center; gap: 4px; }
+        .nav-lnk { color: #94A3B8; text-decoration: none; padding: 6px 12px; border-radius: 8px; font-size: 13px; font-weight: 500; transition: all 0.2s; }
+        .nav-lnk:hover { color: white; background: rgba(255,255,255,0.1); }
+        .nav-out { color: #F87171; text-decoration: none; padding: 6px 12px; border-radius: 8px; font-size: 13px; font-weight: 500; }
+        .nav-out:hover { background: rgba(248,113,113,0.1); }
+        .chat-wrap { max-width: 720px; margin: 0 auto; padding: 24px 16px 40px; }
+        .chat-header { background: white; border-radius: 14px; padding: 16px 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 16px; display: flex; align-items: center; gap: 14px; }
+        .avatar { width: 46px; height: 46px; border-radius: 50%; background: linear-gradient(135deg,#6366F1,#4F46E5); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 18px; flex-shrink: 0; }
+        .chat-name { font-weight: 700; font-size: 15px; color: #0F172A; }
+        .chat-role { font-size: 12px; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px; }
+        .video-bar { background: white; border-radius: 12px; padding: 14px 18px; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+        .video-label { font-size: 14px; font-weight: 600; color: #0F172A; }
+        .video-sub { font-size: 12px; color: #64748B; }
+        .btn-video { background: #10B981; border: none; color: white; border-radius: 8px; padding: 8px 18px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; }
+        .btn-video:hover { background: #059669; }
+        .chat-box { background: white; border-radius: 14px; padding: 20px; min-height: 320px; max-height: 400px; overflow-y: auto; box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 12px; }
+        .msg-me { display: flex; justify-content: flex-end; margin-bottom: 12px; }
+        .msg-other { display: flex; justify-content: flex-start; margin-bottom: 12px; }
+        .bubble-me { background: #6366F1; color: white; padding: 10px 14px; border-radius: 16px 16px 4px 16px; max-width: 68%; font-size: 14px; line-height: 1.5; }
+        .bubble-other { background: #F1F5F9; color: #0F172A; padding: 10px 14px; border-radius: 16px 16px 16px 4px; max-width: 68%; font-size: 14px; line-height: 1.5; }
+        .msg-time { font-size: 10px; color: #94A3B8; margin-top: 4px; }
+        .quick-replies { background: white; border-radius: 12px; padding: 14px 18px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+        .quick-label { font-size: 12px; font-weight: 600; color: #64748B; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .quick-btn { border: 1.5px solid #E5E7EB; background: #F9FAFB; border-radius: 20px; padding: 5px 12px; font-size: 12px; font-weight: 500; cursor: pointer; margin: 3px; transition: all 0.2s; font-family: 'Inter', sans-serif; color: #374151; }
+        .quick-btn:hover { border-color: #6366F1; background: #EEF2FF; color: #6366F1; }
+        .send-box { background: white; border-radius: 12px; padding: 14px 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+        .send-input { border: 2px solid #E5E7EB; border-radius: 10px; padding: 10px 14px; font-size: 14px; font-family: 'Inter', sans-serif; width: 100%; outline: none; }
+        .send-input:focus { border-color: #6366F1; }
+        .btn-send { background: #6366F1; border: none; color: white; border-radius: 10px; padding: 10px 20px; font-weight: 600; font-family: 'Inter', sans-serif; cursor: pointer; }
+        .btn-send:hover { background: #4F46E5; }
+        .empty-chat { text-align: center; padding: 40px 20px; color: #94A3B8; font-size: 14px; }
+    </style>
+</head>
+<body>
+<nav class="pro-nav">
+    <div class="container">
+        <div class="nav-inner">
+            <a href="/dashboard" class="nav-brand">🎓 FreelanceHub</a>
+            <div class="nav-links">
+                <a href="/dashboard" class="nav-lnk">🏠 Home</a>
+                <a href="/messages"  class="nav-lnk">💬 Messages</a>
+                <a href="/profile"   class="nav-lnk">👤 Profile</a>
+                <a href="/settings"  class="nav-lnk">⚙️ Settings</a>
+                <a href="/logout"    class="nav-out">🚪 Logout</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="chat-wrap">
+    <!-- Chat Header -->
+    <div class="chat-header">
+        <div class="avatar" th:text="${#strings.substring(other.name,0,1)}"></div>
+        <div class="flex-grow-1">
+            <div class="chat-name" th:text="${other.name}"></div>
+            <div class="chat-role" th:text="${other.role}"></div>
+        </div>
+        <a th:href="@{/profile/{id}(id=${other.id})}"
+           class="btn btn-sm btn-outline-secondary"
+           style="border-radius:8px;">👤 View Profile</a>
+    </div>
+
+    <!-- Video Call Bar -->
+    <div class="video-bar">
+        <div>
+            <div class="video-label">📹 Video Call</div>
+            <div class="video-sub">Start a free video call instantly</div>
+        </div>
+        <button class="btn-video" onclick="startVideoCall()">📹 Start Call</button>
+    </div>
+
+    <!-- Chat Messages -->
+    <div class="chat-box" id="chatBox">
+        <div th:if="${#lists.isEmpty(messages)}" class="empty-chat">
+            💬 No messages yet. Say hello!
+        </div>
+        <div th:each="msg : ${messages}">
+            <div class="msg-me" th:if="${msg.sender.id == currentUser.id}">
+                <div>
+                    <div class="bubble-me" th:text="${msg.content}"></div>
+                    <div class="msg-time text-end" th:text="${msg.sentAt}"></div>
+                </div>
+            </div>
+            <div class="msg-other" th:if="${msg.sender.id != currentUser.id}">
+                <div>
+                    <div class="bubble-other" th:text="${msg.content}"></div>
+                    <div class="msg-time" th:text="${msg.sentAt}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Replies -->
+    <div class="quick-replies">
+        <div class="quick-label">Quick Replies</div>
+        <button class="quick-btn" onclick="setMsg('I am interested in this project!')">👋 Interested</button>
+        <button class="quick-btn" onclick="setMsg('Can you share more details about the project?')">📋 More Details</button>
+        <button class="quick-btn" onclick="setMsg('I have experience in this. Let me know!')">✅ Experienced</button>
+        <button class="quick-btn" onclick="setMsg('Thank you for accepting my bid! 🎉')">🎉 Thank You</button>
+        <button class="quick-btn" onclick="setMsg('What is the deadline for this project?')">⏰ Deadline?</button>
+        <button class="quick-btn" onclick="startVideoCall()">📹 Video Call?</button>
+    </div>
+
+    <!-- Send Message -->
+    <div class="send-box">
+        <form th:action="@{/messages/{id}(id=${other.id})}"
+              method="post" class="d-flex gap-2">
+            <input type="text" name="content" id="msgInput"
+                   class="send-input" placeholder="Type a message..."
+                   autocomplete="off" required/>
+            <button type="submit" class="btn-send">Send ➤</button>
+        </form>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    // Auto scroll to bottom
+    const box = document.getElementById('chatBox');
+    box.scrollTop = box.scrollHeight;
+
+    function setMsg(text) {
+        document.getElementById('msgInput').value = text;
+        document.getElementById('msgInput').focus();
+    }
+
+    const myId    = [[${currentUser.id}]];
+    const otherId = [[${other.id}]];
+
+    function startVideoCall() {
+        const roomId  = 'FreelanceHub-' + Math.min(myId, otherId) + '-' + Math.max(myId, otherId);
+        const meetUrl = 'https://meet.jit.si/' + roomId;
+        window.open(meetUrl, '_blank');
+        document.getElementById('msgInput').value =
+            '📹 Video Call Link: ' + meetUrl + ' — Click to join!';
+        document.querySelector('form').submit();
+    }
+</script>
+</body>
+</html>

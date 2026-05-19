@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Deadline Calendar — FreelanceHub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/darkmode.css"/>
+    <script src="/darkmode.js"></script>
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        body { background: #F0F4F8; }
+        .pro-nav { background: #0F172A; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 16px rgba(0,0,0,0.2); }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+        .nav-brand { color: white; font-weight: 800; font-size: 18px; text-decoration: none; }
+        .nav-links { display: flex; align-items: center; gap: 4px; }
+        .nav-lnk { color: #94A3B8; text-decoration: none; padding: 6px 12px; border-radius: 8px; font-size: 13px; font-weight: 500; }
+        .nav-lnk:hover { color: white; background: rgba(255,255,255,0.1); }
+        .nav-out { color: #F87171; text-decoration: none; padding: 6px 12px; border-radius: 8px; font-size: 13px; font-weight: 500; }
+        .nav-out:hover { background: rgba(248,113,113,0.1); }
+        .card { border: none; border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); background: white; }
+        .cal-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .cal-month { font-size: 18px; font-weight: 800; color: #0F172A; }
+        .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+        .cal-head { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-bottom: 6px; }
+        .cal-head-day { text-align: center; font-size: 12px; font-weight: 700; color: #64748B; padding: 8px 0; }
+        .cal-day { min-height: 68px; border-radius: 10px; padding: 6px 8px; background: #F8FAFC; font-size: 13px; }
+        .cal-day.empty { background: transparent; }
+        .cal-day.today { background: #EEF2FF; border: 2px solid #6366F1; }
+        .cal-day.has-deadline { background: #FEF2F2; border: 2px solid #EF4444; }
+        .cal-day.completed { background: #F0FDF4; border: 2px solid #10B981; }
+        .day-num { font-weight: 700; color: #0F172A; font-size: 14px; }
+        .deadline-tag { font-size: 10px; background: #EF4444; color: white; border-radius: 4px; padding: 2px 5px; margin-top: 3px; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .completed-tag { font-size: 10px; background: #10B981; color: white; border-radius: 4px; padding: 2px 5px; margin-top: 3px; display: block; }
+        .btn-nav { background: white; border: 2px solid #E5E7EB; border-radius: 8px; padding: 6px 14px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; }
+        .btn-nav:hover { border-color: #6366F1; color: #6366F1; }
+    </style>
+</head>
+<body>
+<nav class="pro-nav">
+    <div class="container">
+        <div class="nav-inner">
+            <a href="/freelancer/dashboard" class="nav-brand">🎓 FreelanceHub</a>
+            <div class="nav-links">
+                <a href="/freelancer/dashboard" class="nav-lnk">🏠 Home</a>
+                <a href="/messages"             class="nav-lnk">💬 Messages</a>
+                <a href="/profile"              class="nav-lnk">👤 Profile</a>
+                <a href="/settings"             class="nav-lnk">⚙️ Settings</a>
+                <a href="/logout"               class="nav-out">🚪 Logout</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4 mb-5">
+    <a href="/freelancer/dashboard" class="btn btn-sm btn-outline-secondary mb-3">← Back</a>
+    <h4 class="fw-bold mb-4">📅 My Deadline Calendar</h4>
+
+    <!-- Hidden deadline data -->
+    <div id="deadlineData" style="display:none;">
+        <span th:each="bid : ${acceptedBids}"
+              th:if="${bid.gig.deadlineDate != null}"
+              th:attr="data-date=${bid.gig.deadlineDate},
+                       data-title=${bid.gig.title},
+                       data-status=${bid.gig.status.name()},
+                       data-days=${bid.gig.daysLeft}"></span>
+    </div>
+
+    <div class="card p-4 mb-4">
+        <div class="cal-nav">
+            <button class="btn-nav" onclick="changeMonth(-1)">← Prev</button>
+            <div class="cal-month" id="monthTitle"></div>
+            <button class="btn-nav" onclick="changeMonth(1)">Next →</button>
+        </div>
+        <div class="cal-head">
+            <div class="cal-head-day">Sun</div>
+            <div class="cal-head-day">Mon</div>
+            <div class="cal-head-day">Tue</div>
+            <div class="cal-head-day">Wed</div>
+            <div class="cal-head-day">Thu</div>
+            <div class="cal-head-day">Fri</div>
+            <div class="cal-head-day">Sat</div>
+        </div>
+        <div class="cal-grid" id="calGrid"></div>
+        <div class="d-flex gap-3 mt-4 flex-wrap">
+            <div class="d-flex align-items-center gap-2">
+                <div style="width:14px;height:14px;background:#EEF2FF;border:2px solid #6366F1;border-radius:4px;"></div>
+                <small>Today</small>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+                <div style="width:14px;height:14px;background:#FEF2F2;border:2px solid #EF4444;border-radius:4px;"></div>
+                <small>Deadline (In Progress)</small>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+                <div style="width:14px;height:14px;background:#F0FDF4;border:2px solid #10B981;border-radius:4px;"></div>
+                <small>Completed</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upcoming Deadlines List -->
+    <div class="card p-4">
+        <h6 class="fw-bold mb-3">⏰ My Project Deadlines</h6>
+        <div th:if="${#lists.isEmpty(acceptedBids)}"
+             class="text-muted text-center py-3">No active projects yet.</div>
+        <div th:each="bid : ${acceptedBids}" th:if="${bid.gig.deadlineDate != null}"
+             class="d-flex justify-content-between align-items-center py-2 border-bottom">
+            <div>
+                <div class="fw-600" th:text="${bid.gig.title}"></div>
+                <small class="text-muted">📅 <span th:text="${bid.gig.deadlineDate}"></span></small>
+            </div>
+            <div>
+                <span class="badge bg-success"
+                      style="background:#10B981!important;"
+                      th:if="${bid.gig.status.name() == 'COMPLETED'}">✅ Done</span>
+                <span class="badge bg-warning text-dark"
+                      th:if="${bid.gig.status.name() == 'IN_PROGRESS' and bid.gig.daysLeft > 3}"
+                      th:text="${bid.gig.daysLeft + ' days left'}"></span>
+                <span class="badge bg-danger"
+                      th:if="${bid.gig.status.name() == 'IN_PROGRESS' and bid.gig.daysLeft >= 0 and bid.gig.daysLeft <= 3}"
+                      th:text="'⚠️ ' + ${bid.gig.daysLeft} + ' days left'"></span>
+                <span class="badge bg-dark"
+                      th:if="${bid.gig.status.name() == 'IN_PROGRESS' and bid.gig.daysLeft < 0}">⛔ Overdue</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const deadlines = {};
+    document.querySelectorAll('#deadlineData span').forEach(el => {
+        const date   = el.getAttribute('data-date');
+        const title  = el.getAttribute('data-title');
+        const status = el.getAttribute('data-status');
+        if (!deadlines[date]) deadlines[date] = [];
+        deadlines[date].push({ title, status });
+    });
+
+    let currentDate = new Date();
+    const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+    function renderCalendar(year, month) {
+        document.getElementById('monthTitle').textContent = months[month] + ' ' + year;
+        const grid = document.getElementById('calGrid');
+        grid.innerHTML = '';
+        const firstDay    = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const today       = new Date();
+
+        for (let i = 0; i < firstDay; i++) {
+            const e = document.createElement('div');
+            e.className = 'cal-day empty';
+            grid.appendChild(e);
+        }
+        for (let d = 1; d <= daysInMonth; d++) {
+            const dateStr = year + '-' + String(month+1).padStart(2,'0') + '-' + String(d).padStart(2,'0');
+            const isToday = d === today.getDate() && month === today.getMonth() && year === today.getFullYear();
+            const dl      = deadlines[dateStr];
+
+            const cell = document.createElement('div');
+            let cls = 'cal-day';
+            if (isToday) cls += ' today';
+            if (dl) {
+                if (dl.some(x => x.status === 'COMPLETED')) cls += ' completed';
+                else cls += ' has-deadline';
+            }
+            cell.className = cls;
+
+            const numEl = document.createElement('div');
+            numEl.className = 'day-num';
+            numEl.textContent = d;
+            cell.appendChild(numEl);
+
+            if (dl) {
+                dl.forEach(item => {
+                    const tag = document.createElement('span');
+                    tag.className = item.status === 'COMPLETED' ? 'completed-tag' : 'deadline-tag';
+                    tag.textContent = item.title;
+                    tag.title = item.title;
+                    cell.appendChild(tag);
+                });
+            }
+            grid.appendChild(cell);
+        }
+    }
+
+    function changeMonth(dir) {
+        currentDate.setMonth(currentDate.getMonth() + dir);
+        renderCalendar(currentDate.getFullYear(), currentDate.getMonth());
+    }
+
+    renderCalendar(currentDate.getFullYear(), currentDate.getMonth());
+</script>
+</body>
+</html>

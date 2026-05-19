@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/darkmode.css"/>
+    <script src="/darkmode.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <style>
+        body { background: #F1F5F9; font-family: 'Segoe UI', sans-serif; }
+        .pro-nav { background: #1E293B; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 12px rgba(0,0,0,0.15); padding: 10px 0; }
+        .nav-brand { color: white; font-weight: 700; font-size: 18px; text-decoration: none; }
+        .nav-link-item { color: #94A3B8; text-decoration: none; padding: 7px 12px; border-radius: 8px; font-size: 14px; font-weight: 500; transition: all 0.2s; display: inline-flex; align-items: center; gap: 5px; }
+        .nav-link-item:hover { color: #fff; background: rgba(255,255,255,0.08); }
+        .nav-link-item.active { color: #fff; background: rgba(255,255,255,0.15); }
+        .nav-logout { color: #FC8181; text-decoration: none; padding: 7px 12px; border-radius: 8px; font-size: 14px; font-weight: 500; display: inline-flex; align-items: center; gap: 5px; }
+        .nav-logout:hover { background: rgba(252,129,129,0.1); }
+        .card { border: none; border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+        .avatar { width: 68px; height: 68px; border-radius: 50%; background: linear-gradient(135deg,#4A6F8A,#3D7A6A); color: white; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: bold; }
+        .badge-role { background: #4A6F8A; font-size: 12px; padding: 5px 14px; border-radius: 20px; color: white; }
+        .section-title { color: #4A6F8A; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; border-left: 4px solid #4A6F8A; padding-left: 10px; margin: 20px 0 10px; }
+        .skill-tag { background: #E8EFF7; color: #4A6F8A; padding: 4px 12px; border-radius: 20px; font-size: 13px; display: inline-block; margin: 3px; }
+        .btn-main { background: #4A6F8A; border: none; color: white; border-radius: 8px; }
+        .btn-main:hover { background: #3A5A7A; color: white; }
+        .info-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 14px; }
+        .achievement-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 500; margin: 3px; }
+        .review-card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 0 1px 6px rgba(0,0,0,0.05); }
+    </style>
+</head>
+<body>
+<nav class="pro-nav">
+    <div class="container d-flex align-items-center justify-content-between">
+        <a href="/dashboard" class="nav-brand">🎓 FreelanceHub</a>
+        <div class="d-flex align-items-center gap-1">
+            <a href="/dashboard" class="nav-link-item">🏠 Home</a>
+            <a href="/messages"  class="nav-link-item">💬 Messages</a>
+            <a href="/profile"   class="nav-link-item active">👤 Profile</a>
+            <a href="/settings"  class="nav-link-item">⚙️ Settings</a>
+            <a href="/logout"    class="nav-logout">🚪 Logout</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4" style="max-width:860px;">
+    <div class="row g-4">
+
+        <!-- LEFT COLUMN — Main Profile -->
+        <div class="col-md-8">
+            <div class="card p-4 mb-4">
+
+                <!-- Header -->
+                <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-3">
+                    <div class="d-flex gap-3 align-items-center">
+                        <div class="avatar"
+                             th:text="${#strings.substring(user.name,0,1)}"></div>
+                        <div>
+                            <h4 class="mb-1 fw-bold" th:text="${user.name}"></h4>
+                            <span class="badge badge-role" th:text="${user.role}"></span>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-2 flex-wrap">
+                        <a th:if="${isOwn}" href="/profile/edit"
+                           class="btn btn-sm btn-outline-secondary">✏️ Edit Profile</a>
+                        <button th:if="${isOwn}" onclick="copyLink()"
+                                class="btn btn-sm btn-outline-secondary">🔗 Share</button>
+                        <a th:if="${!isOwn}"
+                           th:href="@{/messages/{id}(id=${user.id})}"
+                           class="btn btn-main btn-sm">💬 Message</a>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="p-3 rounded mb-3" style="background:#F8FAFC;">
+                    <div class="info-row">
+                        <span>📧</span>
+                        <a th:href="'mailto:' + ${user.email}"
+                           th:text="${user.email}"
+                           style="color:#4A6F8A;text-decoration:none;"></a>
+                    </div>
+                    <div class="info-row"
+                         th:if="${user.githubUrl != null and !#strings.isEmpty(user.githubUrl)}">
+                        <span>🐙</span>
+                        <a th:href="${user.githubUrl}"
+                           th:text="${user.githubUrl}"
+                           target="_blank"
+                           style="color:#4A6F8A;text-decoration:none;word-break:break-all;"></a>
+                    </div>
+                </div>
+
+                <!-- About -->
+                <div class="section-title">About</div>
+                <p class="text-muted"
+                   th:text="${user.bio != null and !#strings.isEmpty(user.bio)
+                             ? user.bio : 'No bio added yet.'}"></p>
+
+                <!-- Skills -->
+                <div th:if="${user.skills != null and !#strings.isEmpty(user.skills)}">
+                    <div class="section-title">Skills</div>
+                    <span th:each="skill : ${#strings.arraySplit(user.skills, ',')}"
+                          class="skill-tag"
+                          th:text="${#strings.trim(skill)}"></span>
+                </div>
+
+                <!-- Top Projects -->
+                <div th:if="${user.topProjects != null and !#strings.isEmpty(user.topProjects)}">
+                    <div class="section-title">🏆 Top Projects</div>
+                    <p style="white-space:pre-line;color:#4A5568;"
+                       th:text="${user.topProjects}"></p>
+                </div>
+
+                <!-- Achievement Badges -->
+                <div th:if="${isOwn}">
+                    <div class="section-title">🏅 Achievements</div>
+                    <div id="badgeContainer">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reviews -->
+            <div class="section-title">⭐ Reviews</div>
+            <div th:if="${#lists.isEmpty(reviews)}"
+                 class="text-muted mb-3 p-3"
+                 style="background:white;border-radius:12px;">
+                No reviews yet.
+            </div>
+            <div class="review-card" th:each="review : ${reviews}">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <span style="color:#F59E0B;font-size:16px;"
+                          th:utext="${'★'.repeat(review.rating) + '☆'.repeat(5 - review.rating)}"></span>
+                    <strong th:text="${review.rating + '/5'}"></strong>
+                </div>
+                <p class="mb-1" th:text="${review.comment}"></p>
+                <small class="text-muted">
+                    — <span th:text="${review.reviewer.name}"></span>
+                </small>
+            </div>
+        </div>
+
+        <!-- RIGHT COLUMN — QR Code -->
+        <div class="col-md-4">
+            <div class="card p-4 text-center mb-4">
+                <h6 class="fw-bold mb-3">📱 Profile QR Code</h6>
+                <div id="qrcode"
+                     class="d-flex justify-content-center mb-3"></div>
+                <p class="text-muted small mb-3">
+                    Scan with phone to view this profile
+                </p>
+                <button onclick="downloadQR()"
+                        class="btn btn-sm btn-outline-secondary w-100">
+                    ⬇️ Download QR Code
+                </button>
+            </div>
+
+            <!-- Profile Completeness -->
+            <div class="card p-4 text-center" th:if="${isOwn}">
+                <h6 class="fw-bold mb-3">📊 Profile Strength</h6>
+                <div style="position:relative;width:100px;height:100px;margin:0 auto 12px;">
+                    <canvas id="strengthChart" width="100" height="100"></canvas>
+                    <div id="strengthPct"
+                         style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:22px;font-weight:700;color:#4A6F8A;">
+                    </div>
+                </div>
+                <p class="text-muted small mb-0" id="strengthMsg"></p>
+                <a href="/profile/edit"
+                   class="btn btn-sm btn-outline-secondary mt-2 w-100">
+                    Improve Profile
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    // QR Code
+    const profileUrl = window.location.href;
+    new QRCode(document.getElementById('qrcode'), {
+        text: profileUrl,
+        width: 150, height: 150,
+        colorDark: '#4A6F8A',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.H
+    });
+
+    function downloadQR() {
+        const canvas = document.querySelector('#qrcode canvas');
+        if (canvas) {
+            const a = document.createElement('a');
+            a.download = 'profile-qr.png';
+            a.href = canvas.toDataURL();
+            a.click();
+        }
+    }
+
+    function copyLink() {
+        navigator.clipboard.writeText(profileUrl)
+            .then(() => alert('✅ Profile link copied to clipboard!'));
+    }
+
+    // Achievement Badges
+    const hasGithub   = [[${user.githubUrl != null and !#strings.isEmpty(user.githubUrl)}]];
+    const hasSkills   = [[${user.skills != null and !#strings.isEmpty(user.skills)}]];
+    const hasBio      = [[${user.bio != null and !#strings.isEmpty(user.bio)}]];
+    const hasProjects = [[${user.topProjects != null and !#strings.isEmpty(user.topProjects)}]];
+    const reviewCount = [[${#lists.size(reviews)}]];
+
+    const allBadges = [
+        { icon:'📝', label:'Bio Added',        color:'#DBEAFE', earn: hasBio },
+        { icon:'🛠️',  label:'Skills Listed',   color:'#D1FAE5', earn: hasSkills },
+        { icon:'🏆',  label:'Portfolio Ready', color:'#FEF3C7', earn: hasProjects },
+        { icon:'🐙',  label:'GitHub Linked',   color:'#EDE9FE', earn: hasGithub },
+        { icon:'⭐',  label:'First Review',    color:'#FCE7F3', earn: reviewCount >= 1 },
+        { icon:'🌟',  label:'5+ Reviews',      color:'#FEE2E2', earn: reviewCount >= 5 },
+    ];
+
+    const container = document.getElementById('badgeContainer');
+    if (container) {
+        const earned = allBadges.filter(b => b.earn);
+        if (earned.length === 0) {
+            container.innerHTML =
+                '<p class="text-muted small">Complete your profile to earn badges! ' +
+                '<a href="/profile/edit">Edit Profile →</a></p>';
+        } else {
+            container.innerHTML = earned.map(b =>
+                `<span class="achievement-badge"
+                       style="background:${b.color};">${b.icon} ${b.label}</span>`
+            ).join('');
+        }
+    }
+
+    // Profile Strength Meter
+    const fields = [hasBio, hasSkills, hasProjects, hasGithub, reviewCount > 0];
+    const pct = Math.round((fields.filter(Boolean).length / fields.length) * 100);
+    const pctEl = document.getElementById('strengthPct');
+    const msgEl = document.getElementById('strengthMsg');
+    if (pctEl) pctEl.textContent = pct + '%';
+    if (msgEl) {
+        msgEl.textContent = pct < 40 ? 'Keep going! Add more info.' :
+            pct < 80 ? 'Good profile! Almost complete.' :
+                'Excellent! Your profile stands out!';
+    }
+    // Draw arc
+    const canvas = document.getElementById('strengthChart');
+    if (canvas) {
+        const ctx = canvas.getContext('2d');
+        const angle = (pct / 100) * 2 * Math.PI;
+        ctx.clearRect(0, 0, 100, 100);
+        ctx.beginPath();
+        ctx.arc(50, 50, 40, 0, 2 * Math.PI);
+        ctx.strokeStyle = '#E2E8F0';
+        ctx.lineWidth = 10;
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(50, 50, 40, -Math.PI / 2, -Math.PI / 2 + angle);
+        ctx.strokeStyle = pct < 40 ? '#EF4444' : pct < 80 ? '#F59E0B' : '#10B981';
+        ctx.lineWidth = 10;
+        ctx.lineCap = 'round';
+        ctx.stroke();
+    }
+</script>
+</body>
+</html>
