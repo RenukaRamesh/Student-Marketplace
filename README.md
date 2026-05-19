@@ -80,11 +80,16 @@ mvn spring-boot:run
 
 
 
-## 👤 Default Admin Account
+## 👤 Default Accounts
+## Admin Account
 Email: admin@marketplace.com
 Password: Admin@123
-
----
+## Client Account
+Email: client@marketplace.com
+Password: Client@123
+## Freelancer Account
+Email: freelancer@marketplace.com
+Password:Free@123
 
 ## 📸 Screenshots
 
@@ -93,14 +98,18 @@ Password: Admin@123
 
 ### Client Dashboard
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/61646f74-d2fe-4581-a805-fbe3cc10cda1" />
+
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/00f54953-1997-49f7-bdff-1b01ad8a6d0b" />
-## Client Profile
+
+### Client Profile
 <img width="1108" height="706" alt="image" src="https://github.com/user-attachments/assets/290518cb-7374-4ef3-a188-3755f7e6dd9e" />
 
 ---
 ### Freelancer Dashboard
 <img width="1285" height="797" alt="image" src="https://github.com/user-attachments/assets/6b17ffce-54dc-4881-b6df-6e1c70d3f3a6" />
+
 <img width="1267" height="622" alt="image" src="https://github.com/user-attachments/assets/3205ca83-a7ae-4045-bbbd-cab66f2525e7" />
+
 <img width="1277" height="836" alt="image" src="https://github.com/user-attachments/assets/9f9ae5ce-05e9-40d1-98dd-a568fbe0bf49" />
 
 ### Admin Dashboard
@@ -137,7 +146,7 @@ Powered by *Jitsi Meet**
 
 ## 👩‍💻 Developer
 
-**Renuka**
+**RAMESH RENUKA**
 3rd Year — Artificial Intelligence & Machine Learning
 Saveetha Engineering College
 
