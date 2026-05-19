@@ -102,7 +102,7 @@ Password:Free@123
 <img width="900" height="600" alt="image" src="https://github.com/user-attachments/assets/6d702aa8-802b-4007-9519-217e1e986ac2" />
 
 ### Create Account
-<img width="800" height="1000" alt="image" src="https://github.com/user-attachments/assets/342d9cfb-df87-48aa-8ee5-e8d8d1af080f" />
+<img width="600" height="900" alt="image" src="https://github.com/user-attachments/assets/342d9cfb-df87-48aa-8ee5-e8d8d1af080f" />
 
 ### Admin Dashboard
 <img width="900" height="600" alt="image" src="https://github.com/user-attachments/assets/f4501b23-6591-4f81-9721-cf8b0a691d7e" />
