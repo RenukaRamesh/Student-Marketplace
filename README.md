@@ -79,7 +79,7 @@ http://localhost:8081
 ```
 ---
 
-## 👤 Default Accounts
+## 👤 Default or Sample Accounts
 ### Admin Account
 ```
 Email: admin@marketplace.com
@@ -204,7 +204,6 @@ Password:Free@123
 
 ---
 
----
 <img width="900" height="600" alt="image" src="https://github.com/user-attachments/assets/5fc9cd16-f05b-49ac-8b47-466353e44c15" />
 
 ---
