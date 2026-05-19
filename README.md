@@ -81,26 +81,32 @@ mvn spring-boot:run
 
 
 ## 👤 Default Accounts
-## Admin Account
+### Admin Account
+```
 Email: admin@marketplace.com
 Password: Admin@123
-## Client Account
+```
+### Client Account
+```
 Email: client@marketplace.com
 Password: Client@123
-## Freelancer Account
+```
+### Freelancer Account
+```
 Email: freelancer@marketplace.com
 Password:Free@123
-
+```
 ## 📸 Screenshots
 
 ### Login Page
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/2d671492-c0df-4dfa-af99-aee2ba3b5edf" />
 
 ### Client Dashboard
+```
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/61646f74-d2fe-4581-a805-fbe3cc10cda1" />
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/00f54953-1997-49f7-bdff-1b01ad8a6d0b" />
-
+```
 ### Client Profile
 <img width="1108" height="706" alt="image" src="https://github.com/user-attachments/assets/290518cb-7374-4ef3-a188-3755f7e6dd9e" />
 
