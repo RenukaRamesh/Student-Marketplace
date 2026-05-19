@@ -99,20 +99,20 @@ Password:Free@123
 ## 📸 Screenshots
 
 ### Login Page
-<img width="1915" height="900" alt="image" src="https://github.com/user-attachments/assets/6d702aa8-802b-4007-9519-217e1e986ac2" />
+<img width="800" height="600" alt="image" src="https://github.com/user-attachments/assets/6d702aa8-802b-4007-9519-217e1e986ac2" />
 
 ### Create Account
-<img width="635" height="906" alt="image" src="https://github.com/user-attachments/assets/342d9cfb-df87-48aa-8ee5-e8d8d1af080f" />
+<img width="800" height="600" alt="image" src="https://github.com/user-attachments/assets/342d9cfb-df87-48aa-8ee5-e8d8d1af080f" />
 
 ### Admin Dashboard
-<img width="600" height="400" alt="image" src="https://github.com/user-attachments/assets/f4501b23-6591-4f81-9721-cf8b0a691d7e" />
+<img width="800" height="600" alt="image" src="https://github.com/user-attachments/assets/f4501b23-6591-4f81-9721-cf8b0a691d7e" />
 
 ### Admin Actions
-<img width="1112" height="335" alt="image" src="https://github.com/user-attachments/assets/1466f8d0-eaa1-4a0a-b857-05371f060628" />
+<img width="800" height="600" alt="image" src="https://github.com/user-attachments/assets/1466f8d0-eaa1-4a0a-b857-05371f060628" />
 
-<img width="1126" height="332" alt="image" src="https://github.com/user-attachments/assets/8aea3e09-3757-4b2b-9f35-837d48de82a5" />
+<img width="800" height="600" alt="image" src="https://github.com/user-attachments/assets/8aea3e09-3757-4b2b-9f35-837d48de82a5" />
 
-<img width="1116" height="328" alt="image" src="https://github.com/user-attachments/assets/af3b432c-aa68-418e-94d8-13379170ba13" />
+<img width="800" height="600" alt="image" src="https://github.com/user-attachments/assets/af3b432c-aa68-418e-94d8-13379170ba13" />
 
 ### Client Dashboard
 
