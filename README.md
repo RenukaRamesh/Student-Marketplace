@@ -114,34 +114,40 @@ Password:Free@123
 
 <img width="900" height="400" alt="image" src="https://github.com/user-attachments/assets/af3b432c-aa68-418e-94d8-13379170ba13" />
 
+---
 ### Client Dashboard
 <img width="900" height="600" alt="image" src="https://github.com/user-attachments/assets/1d41e746-38fe-4523-9669-3ab9d2d8feda" />
 
 ### Client Profile
 <img width="900" height="600" alt="image" src="https://github.com/user-attachments/assets/fe6d17e1-5739-4d0f-ad29-6e68d35a261e" />
 
+---
 ### Freelancer Dashboard
 <img width="900" height="600" alt="image" src="https://github.com/user-attachments/assets/6a24813d-5074-4fbd-b83f-8308ca3e412e" />
 
 ### Freelancer Profile
 <img width="900" height="600" alt="image" src="https://github.com/user-attachments/assets/4081d92a-489e-4eaa-9bcb-e6182034e4a8" />
 
+---
 ## 🤖 AI Features
 
 - **Description Generator** — Client posts a project title → AI writes a professional description
 <img width="900" height="800" alt="image" src="https://github.com/user-attachments/assets/e5192fca-bc48-46fe-9afb-77594050a68a" />
+---
 
 - **Bid Ranker** — Client views bids → AI ranks them best to worst with recommendations
 <img width="900" height="800" alt="image" src="https://github.com/user-attachments/assets/62126161-a825-4aa0-86b5-2d72d73f9cf3" />
 
 **Powered by **Groq API**** (Llama 3.1 — free tier)
 
+---
 ## 📹 Video Call Features
 <img width="900" height="700" alt="image" src="https://github.com/user-attachments/assets/2e5a8eba-bfcc-4813-b019-f61a7e3ddb3c" />
 
 <img width="900" height="700" alt="image" src="https://github.com/user-attachments/assets/7f90527c-9c4e-4454-967e-02b0b75f1e61" />
 
 **Powered by **Jitsi Meet****
+
 ---
 
 ## QR Profiles
@@ -166,6 +172,7 @@ Password:Free@123
 ## Contracts
 <img width="900" height="600" alt="image" src="https://github.com/user-attachments/assets/ae95646f-ee42-4e24-acbc-cff52aff7ac4" />
 
+---
 # 👩‍💻 Developer
 
 ## RAMESH RENUKA
