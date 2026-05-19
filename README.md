@@ -102,11 +102,11 @@ Password:Free@123
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/2d671492-c0df-4dfa-af99-aee2ba3b5edf" />
 
 ### Client Dashboard
-```
+
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/61646f74-d2fe-4581-a805-fbe3cc10cda1" />
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/00f54953-1997-49f7-bdff-1b01ad8a6d0b" />
-```
+
 ### Client Profile
 <img width="1108" height="706" alt="image" src="https://github.com/user-attachments/assets/290518cb-7374-4ef3-a188-3755f7e6dd9e" />
 
@@ -128,14 +128,14 @@ Password:Free@123
 - **Bid Ranker** — Client views bids → AI ranks them best to worst with recommendations
   <img width="1327" height="837" alt="image" src="https://github.com/user-attachments/assets/9f0c3113-7d46-46cc-821c-f2194a96cb44" />
 
-Powered by **Groq API** (Llama 3.1 — free tier)
+**Powered by **Groq API**** (Llama 3.1 — free tier)
 
 ## 📹 Video Call Features
 <img width="1352" height="876" alt="image" src="https://github.com/user-attachments/assets/04189c46-399e-4420-b0e1-04da9c0f6e3a" />
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a3b9e9f8-85aa-408f-b5da-cb0bcaa9495d" />
 
-Powered by *Jitsi Meet**
+**Powered by *Jitsi Meet****
 ---
 
 ## QR Profile
