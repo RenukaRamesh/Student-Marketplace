@@ -99,32 +99,32 @@ Password:Free@123
 ## 📸 Screenshots
 
 ### Login Page
-<img width="800" height="600" alt="image" src="https://github.com/user-attachments/assets/6d702aa8-802b-4007-9519-217e1e986ac2" />
+<img width="900" height="600" alt="image" src="https://github.com/user-attachments/assets/6d702aa8-802b-4007-9519-217e1e986ac2" />
 
 ### Create Account
 <img width="800" height="1000" alt="image" src="https://github.com/user-attachments/assets/342d9cfb-df87-48aa-8ee5-e8d8d1af080f" />
 
 ### Admin Dashboard
-<img width="800" height="600" alt="image" src="https://github.com/user-attachments/assets/f4501b23-6591-4f81-9721-cf8b0a691d7e" />
+<img width="900" height="600" alt="image" src="https://github.com/user-attachments/assets/f4501b23-6591-4f81-9721-cf8b0a691d7e" />
 
 ### Admin Actions
-<img width="1000" height="600" alt="image" src="https://github.com/user-attachments/assets/1466f8d0-eaa1-4a0a-b857-05371f060628" />
+<img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/1466f8d0-eaa1-4a0a-b857-05371f060628" />
 
-<img width="1000" height="600" alt="image" src="https://github.com/user-attachments/assets/8aea3e09-3757-4b2b-9f35-837d48de82a5" />
+<img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/8aea3e09-3757-4b2b-9f35-837d48de82a5" />
 
-<img width="1000" height="600" alt="image" src="https://github.com/user-attachments/assets/af3b432c-aa68-418e-94d8-13379170ba13" />
+<img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/af3b432c-aa68-418e-94d8-13379170ba13" />
 
 ### Client Dashboard
-<img width="800" height="600" alt="image" src="https://github.com/user-attachments/assets/1d41e746-38fe-4523-9669-3ab9d2d8feda" />
+<img width="900" height="600" alt="image" src="https://github.com/user-attachments/assets/1d41e746-38fe-4523-9669-3ab9d2d8feda" />
 
 ### Client Profile
 <img width="800" height="600" alt="image" src="https://github.com/user-attachments/assets/fe6d17e1-5739-4d0f-ad29-6e68d35a261e" />
 
 ### Freelancer Dashboard
-<img width="800" height="600" alt="image" src="https://github.com/user-attachments/assets/6a24813d-5074-4fbd-b83f-8308ca3e412e" />
+<img width="900" height="600" alt="image" src="https://github.com/user-attachments/assets/6a24813d-5074-4fbd-b83f-8308ca3e412e" />
 
 ### Freelancer Profile
-<img width="800" height="600" alt="image" src="https://github.com/user-attachments/assets/4081d92a-489e-4eaa-9bcb-e6182034e4a8" />
+<img width="900" height="600" alt="image" src="https://github.com/user-attachments/assets/4081d92a-489e-4eaa-9bcb-e6182034e4a8" />
 
 ## 🤖 AI Features
 
