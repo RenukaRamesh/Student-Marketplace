@@ -166,11 +166,11 @@ Password:Free@123
 ## Contracts
 <img width="900" height="600" alt="image" src="https://github.com/user-attachments/assets/ae95646f-ee42-4e24-acbc-cff52aff7ac4" />
 
-## 👩‍💻 Developer
+# 👩‍💻 Developer
 
-# RAMESH RENUKA
+## RAMESH RENUKA
 ### 3rd Year — Artificial Intelligence & Machine Learning
-#### Saveetha Engineering College
+### Saveetha Engineering College
 ---
 
 ## 📄 License
