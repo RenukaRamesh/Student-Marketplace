@@ -169,27 +169,10 @@ Password:Free@123
 ## 👩‍💻 Developer
 
 **RAMESH RENUKA**
-3rd Year — Artificial Intelligence & Machine Learning
-Saveetha Engineering College
+***3rd Year — Artificial Intelligence & Machine Learning***
+****Saveetha Engineering College****
 
 ---
 
 ## 📄 License
 This project is for educational purposes.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
