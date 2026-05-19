@@ -99,11 +99,12 @@ Password:Free@123
 ## 📸 Screenshots
 
 ### Login Page
+<p>
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/2d671492-c0df-4dfa-af99-aee2ba3b5edf" />
-
+</p>
 ### Client Dashboard
-
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/61646f74-d2fe-4581-a805-fbe3cc10cda1" />
+<p><img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/61646f74-d2fe-4581-a805-fbe3cc10cda1" />
+</p>
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/00f54953-1997-49f7-bdff-1b01ad8a6d0b" />
 
